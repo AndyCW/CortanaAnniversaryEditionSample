@@ -1,0 +1,60 @@
+﻿<Page
+    x:Class="Contoso.Dashboard"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:Contoso"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d">
+    <Page.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="White" />
+                    <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="SlateGray" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
+
+            <Style x:Key="Navigation" TargetType="Button">
+                <Setter Property="Foreground" Value="White"/>
+                <Setter Property="FontSize" Value="14"/>
+                <Setter Property="HorizontalAlignment" Value="Stretch"/>
+                <Setter Property="Padding" Value="24, 16, 16, 20"/>
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+            </Style>
+        </ResourceDictionary>
+    </Page.Resources>
+
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.4*" MinWidth="300" />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Image Grid.RowSpan="2" Grid.ColumnSpan="2" x:Name="BackgroundImage" Stretch="UniformToFill" Source="ms-appx:///Assets/background.jpg" Opacity="1" />
+
+        <RelativePanel x:Name="Menu" Grid.Row="1" VerticalAlignment="Stretch">
+            <Button x:Name="MessageButton" AccessKey="M" AccessKeyDisplayRequested="MenuButton_AccessKeyDisplayRequested" AccessKeyDisplayDismissed="MenuButton_AccessKeyDisplayDismissed" Click="MessageButton_Click" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="TopBorder"  Content="MESSAGES" Style="{StaticResource Navigation}" Background="#444444"/>
+            <Button x:Name="ReportButton" AccessKey="R" AccessKeyDisplayRequested="MenuButton_AccessKeyDisplayRequested" AccessKeyDisplayDismissed="MenuButton_AccessKeyDisplayDismissed"  Click="ReportButton_Click" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="MessageButton" Content="REPORT" Style="{StaticResource Navigation}" Background="#333333" />
+            <Button x:Name="SelfieButton" AccessKey="S" AccessKeyDisplayRequested="MenuButton_AccessKeyDisplayRequested" AccessKeyDisplayDismissed="MenuButton_AccessKeyDisplayDismissed"  RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="ReportButton" Content="SELFIE" Style="{StaticResource Navigation}" Background="#444444" />
+            <Button x:Name="FeedbackButton" AccessKey="F" AccessKeyDisplayRequested="MenuButton_AccessKeyDisplayRequested" AccessKeyDisplayDismissed="MenuButton_AccessKeyDisplayDismissed"  Click="FeedbackButton_Click" RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.Below="SelfieButton" Content="FEEDBACK" Style="{StaticResource Navigation}" Background="#333333" />
+            
+            <Border RelativePanel.AlignRightWithPanel="True" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignBottomWithPanel="True" RelativePanel.Below="FeedbackButton" Background="#444444"/>
+
+            <Border x:Name="TopBorder" RelativePanel.AlignRightWithPanel="True" Height="100" RelativePanel.AlignLeftWithPanel="True" RelativePanel.AlignTopWithPanel="True" Background="#444444">
+                <TextBlock Text="CONTOSO" Foreground="White" FontSize="48" FontWeight="ExtraLight" VerticalAlignment="Center" Margin="65,0,0,0" />
+            </Border>
+        </RelativePanel>
+
+        <Image x:Name="Logo" Source="ms-appx:///Assets/spark.png" Height="75" Margin="5,10,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" />
+
+        <Border x:Name="DropShadow" Grid.Column="1" Margin="30" VerticalAlignment="Center" Height="450"/>
+        <local:Messages x:Name="MessagesControl" Grid.Column="1" Margin="30" VerticalAlignment="Center" Height="450"/>
+        <local:Report x:Name="ReportControl" Grid.Column="1" Margin="30" VerticalAlignment="Center" Height="450"/>
+    </Grid>
+</Page>
